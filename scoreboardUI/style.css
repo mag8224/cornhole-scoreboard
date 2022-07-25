@@ -1,0 +1,36 @@
+body {
+    height: 100%;
+}
+.container {
+    height: 48em;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 15% auto 10%;
+    grid-template-areas: 
+        ". header ."
+        "main main main"
+        "footer footer footer";
+    row-gap: 10px;
+    align-items: stretch; /* alignment upon the column axis move items up and down*/
+    justify-items: stretch; /* alignment upon the row axis move the item left and right */
+    place-items: stretch; /* short hand for both align items and justify items */
+}
+
+
+
+.title {
+    color: #EEAA22;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: gray;
+    grid-row: 1/2; /* define grid line start /grid line end */
+    grid-column: 2/3;
+    place-self: center; /* where to justify and align (row and col) of self in a grid cell */
+}
+
+.gameplay {
+    background-color: black;
+    color: white;
+    grid-row: 2/3;
+    grid-column: 2/3;
+
+}
