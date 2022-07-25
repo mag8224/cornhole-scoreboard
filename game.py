@@ -12,13 +12,16 @@ class Game:
        
 
     def scoreRound(self):
+        print(self.round)
         team1_roundScore = self.round['inHole'][0]*3 + self.round['onBoard'][0]
         team2_roundScore = self.round['inHole'][1]*3 + self.round['onBoard'][1]
+        print(team1_roundScore, team2_roundScore)
         netScore = team1_roundScore - team2_roundScore
         if(netScore > 0):
             self.team1 += netScore
         else:
             self.team2 += netScore * -1
+            
         if(self.team1 > 21):
             self.team1 = 13
         if(self.team2 > 21):
@@ -50,6 +53,17 @@ class Game:
         elif(team == 2 and self.round['inHole'][1] < 4 and self.round['onBoard'][1] + self.round['inHole'][1] < 4):
             self.round['inHole'][1] +=1
     
+    def removeOnBoard(self, team):
+        if(team == 1 and self.round['onBoard'][0] > 0):
+            self.round['onBoard'][0] -=1
+        elif(team == 2 and self.round['onBoard'][1] > 0):
+            self.round['onBoard'][1] -= 1
+
+    def removeInHole(self, team):
+        if(team == 1 and self.round['inHole'][0] > 0):
+            self.round['inHole'][0] -=1
+        elif(team == 2 and self.round['inHole'][1] > 0):
+            self.round['inHole'][1] -= 1
 
 
 sampleGame = Game()
@@ -60,8 +74,8 @@ sampleGame.addOnBoard(1)
 sampleGame.addInHole(1)
 sampleGame.scoreRound()
 print('Round 1 Score:')
-
 print('Team 1:', sampleGame.team1, 'Team 2:', sampleGame.team2)
+
 sampleGame.addInHole(2)
 sampleGame.addInHole(2)
 sampleGame.addInHole(2)
@@ -71,11 +85,11 @@ print('Round 2 Score:')
 print('Team 1:', sampleGame.team1, 'Team 2:', sampleGame.team2)
 
 sampleGame.addInHole(2)
-sampleGame.addInHole(2)
 sampleGame.addInHole(1)
 sampleGame.addInHole(2)
-sampleGame.addInHole(2)
+sampleGame.addOnBoard(2)
+sampleGame.addOnBoard(2)
+sampleGame.removeOnBoard(2)
 sampleGame.scoreRound()
 print('Round 3 Score:')
 print('Team 1:', sampleGame.team1, 'Team 2:', sampleGame.team2)
-print(sampleGame.winner, 'Won!')
